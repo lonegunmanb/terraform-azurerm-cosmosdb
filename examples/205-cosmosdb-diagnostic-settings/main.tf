@@ -1,24 +1,19 @@
-# Azure provider version 
-terraform {
-  required_providers {
-    azurerm = {
-      source  = "hashicorp/azurerm"
-      version = ">=3.0"
-    }
-  }
+resource "random_pet" "pet" {
+  length = 1
 }
 
-provider "azurerm" {
-  features {}
+locals {
+  log_analytics_workspace_name = coalesce(var.log_analytics_workspace_name, "cosmosdb${random_pet.pet.id}")
+  resource_group_name = coalesce(var.resource_group_name, "example-cosmosdb-${random_pet.pet.id}")
 }
 
 resource "azurerm_resource_group" "this" {
-  name     = var.resource_group_name
+  name     = local.resource_group_name
   location = var.location
 }
 
 resource "azurerm_log_analytics_workspace" "this" {
-  name                = var.log_analytics_workspace_name
+  name                = local.log_analytics_workspace_name
   location            = azurerm_resource_group.this.location
   resource_group_name = azurerm_resource_group.this.name
   sku                 = "PerGB2018"
@@ -26,7 +21,7 @@ resource "azurerm_log_analytics_workspace" "this" {
 }
 
 module "azure_cosmos_db" {
-  source              = "Azure/cosmosdb/azurerm"
+  source              = "../../"
   resource_group_name = azurerm_resource_group.this.name
   location            = azurerm_resource_group.this.location
   cosmos_account_name = var.cosmos_account_name

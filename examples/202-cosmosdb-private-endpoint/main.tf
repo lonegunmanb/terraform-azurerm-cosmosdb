@@ -1,19 +1,13 @@
-# Azure provider version 
-terraform {
-  required_providers {
-    azurerm = {
-      source  = "hashicorp/azurerm"
-      version = ">=3.0"
-    }
-  }
+resource "random_pet" "pet" {
+  length = 1
 }
 
-provider "azurerm" {
-  features {}
+locals {
+  resource_group_name = coalesce(var.resource_group_name, "example-cosmosdb-${random_pet.pet.id}")
 }
 
 resource "azurerm_resource_group" "this" {
-  name     = var.resource_group_name
+  name     = local.resource_group_name
   location = var.location
 }
 
@@ -48,7 +42,7 @@ resource "azurerm_private_dns_zone_virtual_network_link" "this" {
 }
 
 module "azure_cosmos_db" {
-  source              = "Azure/cosmosdb/azurerm"
+  source              = "../../"
   resource_group_name = azurerm_resource_group.this.name
   location            = azurerm_resource_group.this.location
   cosmos_account_name = var.cosmos_account_name
@@ -59,6 +53,7 @@ module "azure_cosmos_db" {
     "pe_endpoint" = {
       dns_zone_group_name             = var.dns_zone_group_name
       dns_zone_rg_name                = azurerm_private_dns_zone.this.resource_group_name
+      enable_private_dns_entry        = true
       is_manual_connection            = false
       name                            = var.pe_name
       private_service_connection_name = var.pe_connection_name
