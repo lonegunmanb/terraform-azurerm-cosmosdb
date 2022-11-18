@@ -59,23 +59,10 @@ func readRetryableErrors(t *testing.T) map[string]string {
 	if err != nil {
 		t.Fatalf("cannot unmarshal retryable_errors.hcl.json")
 	}
-	retryableRegexes := cfg["retryable_errors"].([]string)
+	retryableRegexes := cfg["retryable_errors"].([]interface{})
 	retryableErrors := make(map[string]string)
 	for _, r := range retryableRegexes {
-		retryableErrors[r] = "retryable errors set in retryable_errors.hcl.json"
+		retryableErrors[r.(string)] = "retryable errors set in retryable_errors.hcl.json"
 	}
 	return retryableErrors
 }
-
-//func Test_102_cosmosdb_mongo_api(t *testing.T) {
-//	managedIdentityId := os.Getenv("MSI_ID")
-//	if managedIdentityId != "" {
-//		_ = os.Setenv("TF_VAR_managed_identity_principal_id", managedIdentityId)
-//	}
-//	test_helper.RunE2ETest(t, "../../", fmt.Sprintf("examples/%s", "102-cosmosdb-mongo-api"), terraform.Options{
-//		Upgrade: true,
-//	}, func(t *testing.T, output test_helper.TerraformOutput) {
-//		cosmosdbAccountId := output["cosmosdb_account_id"]
-//		assert.Regexp(t, "/subscriptions/.+/resourceGroups/.+/providers/Microsoft.DocumentDB/databaseAccounts/.+", cosmosdbAccountId)
-//	})
-//}
