@@ -4,7 +4,7 @@ resource "random_pet" "pet" {
 
 locals {
   log_analytics_workspace_name = coalesce(var.log_analytics_workspace_name, "cosmosdb${random_pet.pet.id}")
-  resource_group_name = coalesce(var.resource_group_name, "example-cosmosdb-${random_pet.pet.id}")
+  resource_group_name          = coalesce(var.resource_group_name, "example-cosmosdb-${random_pet.pet.id}")
 }
 
 resource "azurerm_resource_group" "this" {

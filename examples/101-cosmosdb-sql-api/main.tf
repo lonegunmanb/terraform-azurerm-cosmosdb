@@ -20,7 +20,7 @@ module "azure_cosmos_db" {
   cosmos_api          = var.cosmos_api
   sql_dbs             = var.sql_dbs
   sql_db_containers   = var.sql_db_containers
-  depends_on          = [
+  depends_on = [
     azurerm_resource_group.this
   ]
 }

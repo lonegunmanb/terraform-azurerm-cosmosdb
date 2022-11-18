@@ -7,7 +7,7 @@ variable "resource_group_name" {
 variable "location" {
   type        = string
   description = "Azure Region"
-  default = "westeurope"
+  default     = "westeurope"
 }
 
 variable "cosmos_account_name" {
@@ -70,21 +70,21 @@ variable "gremlin_graphs" {
   }))
   default = {
     one = {
-      graph_name                        = "graph1"
-      db_name                           = "dbautoscale"
-      partition_key_path                = "/Example"
-      partition_key_version             = 2
-      default_ttl_seconds               = 86400
-      graph_throughput                  = 400
-      graph_max_throughput              = null
-      index_policy_settings             = {
-        indexing_automatic        = true
-        indexing_mode             = "consistent"
-        included_paths            = ["/*"]
-        excluded_paths            = ["/\"_etag\"/?"]
-        composite_indexes         = {
-          compositeindexesone             = {
-            indexes  = [
+      graph_name            = "graph1"
+      db_name               = "dbautoscale"
+      partition_key_path    = "/Example"
+      partition_key_version = 2
+      default_ttl_seconds   = 86400
+      graph_throughput      = 400
+      graph_max_throughput  = null
+      index_policy_settings = {
+        indexing_automatic = true
+        indexing_mode      = "consistent"
+        included_paths     = ["/*"]
+        excluded_paths     = ["/\"_etag\"/?"]
+        composite_indexes = {
+          compositeindexesone = {
+            indexes = [
               {
                 index_path  = "/container/name"
                 index_order = "Ascending"
@@ -102,27 +102,27 @@ variable "gremlin_graphs" {
           }
         }
       }
-      conflict_resolution_policy  = null
-      unique_key =  ["/container/id"]
+      conflict_resolution_policy = null
+      unique_key                 = ["/container/id"]
     },
     two = {
-      graph_name                        = "graph2"
-      db_name                           = "dbnoautoscale"
-      partition_key_path                = "/Example"
-      partition_key_version             = 2
-      default_ttl_seconds               = 86400
-      graph_throughput                  = null
-      graph_max_throughput              = 1000
-      index_policy_settings             = {
-        indexing_automatic        = true
-        indexing_mode             = "consistent"
-        included_paths            = ["/*"]
-        excluded_paths            = ["/\"_etag\"/?"]
-        composite_indexes         = null
-        spatial_indexes = null
+      graph_name            = "graph2"
+      db_name               = "dbnoautoscale"
+      partition_key_path    = "/Example"
+      partition_key_version = 2
+      default_ttl_seconds   = 86400
+      graph_throughput      = null
+      graph_max_throughput  = 1000
+      index_policy_settings = {
+        indexing_automatic = true
+        indexing_mode      = "consistent"
+        included_paths     = ["/*"]
+        excluded_paths     = ["/\"_etag\"/?"]
+        composite_indexes  = null
+        spatial_indexes    = null
       }
-      conflict_resolution_policy  = null
-      unique_key = ["/container/id"]
+      conflict_resolution_policy = null
+      unique_key                 = ["/container/id"]
     }
   }
 }

@@ -13,7 +13,7 @@ resource "azurerm_resource_group" "this" {
 }
 
 module "azure_cosmos_db" {
-  source = "../../"
+  source              = "../../"
   resource_group_name = azurerm_resource_group.this.name
   location            = azurerm_resource_group.this.location
   cosmos_account_name = var.cosmos_account_name

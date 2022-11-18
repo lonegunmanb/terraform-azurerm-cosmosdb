@@ -15,15 +15,15 @@ resource "azurerm_cosmosdb_mongo_database" "this" {
 }
 
 locals {
-  mongo_db_name = {for k, v in azurerm_cosmosdb_mongo_database.this : k=> v.name}
+  mongo_db_name = { for k, v in azurerm_cosmosdb_mongo_database.this : k => v.name }
 }
 
 resource "azurerm_cosmosdb_mongo_collection" "this" {
-  for_each               = var.mongo_db_collections
-  name                   = each.value.collection_name
-  resource_group_name    = data.azurerm_resource_group.this.name
-  account_name           = azurerm_cosmosdb_account.this.name
-  database_name          = each.value.db_name
+  for_each            = var.mongo_db_collections
+  name                = each.value.collection_name
+  resource_group_name = data.azurerm_resource_group.this.name
+  account_name        = azurerm_cosmosdb_account.this.name
+  database_name       = each.value.db_name
   #    database_name          = local.mongo_db_name[each.key]
   default_ttl_seconds    = each.value.default_ttl_seconds != null ? each.value.default_ttl_seconds : null
   shard_key              = each.value.shard_key

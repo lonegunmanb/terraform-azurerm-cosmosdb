@@ -7,7 +7,7 @@ variable "resource_group_name" {
 variable "location" {
   type        = string
   description = "Azure Region"
-  default = "westeurope"
+  default     = "westeurope"
 }
 
 variable "public_network_access_enabled" {
@@ -29,12 +29,12 @@ variable "firewall_ip" {
 }
 
 variable "cosmos_account_name" {
-  type = string
+  type    = string
   default = ""
 }
 
 variable "cosmos_api" {
-  type = string
+  type    = string
   default = "sql"
 }
 
@@ -96,8 +96,8 @@ variable "sql_db_containers" {
       partition_key_version    = 2
       container_throughout     = 400
       container_max_throughput = null
-      default_ttl = null
-      analytical_storage_ttl = null
+      default_ttl              = null
+      analytical_storage_ttl   = null
       indexing_policy_settings = {
         sql_indexing_mode = "consistent"
         sql_included_path = "/*"
@@ -122,7 +122,7 @@ variable "sql_db_containers" {
           }
         }
       }
-      sql_unique_key = ["/container/id"]
+      sql_unique_key             = ["/container/id"]
       conflict_resolution_policy = null
     }
     two = {
@@ -132,8 +132,8 @@ variable "sql_db_containers" {
       partition_key_version    = 2
       container_throughout     = 500
       container_max_throughput = null
-      default_ttl = null
-      analytical_storage_ttl = null
+      default_ttl              = null
+      analytical_storage_ttl   = null
       indexing_policy_settings = {
         sql_indexing_mode = "consistent"
         sql_included_path = "/*"
@@ -141,7 +141,7 @@ variable "sql_db_containers" {
         composite_indexes = {}
         spatial_indexes   = {}
       }
-      sql_unique_key = ["/container/id"]
+      sql_unique_key             = ["/container/id"]
       conflict_resolution_policy = null
     }
   }

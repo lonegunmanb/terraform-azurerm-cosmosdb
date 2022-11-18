@@ -7,13 +7,13 @@ variable "resource_group_name" {
 variable "location" {
   type        = string
   description = "Azure Region"
-  default = "westeurope"
+  default     = "westeurope"
 }
 
 variable "cosmos_enterprise_app_service_principal_object_id" {
-  type    = string
+  type        = string
   description = "Object id for enterprise application named `Azure Cosmos DB`. Leave this variable `null` would query the object via `azuread` provider, which requires corresponding permission."
-  default = null
+  default     = null
 }
 
 variable "resource_group_name_read_replica" {
@@ -160,7 +160,7 @@ variable "cosmos_account_name" {
 }
 
 variable "cosmos_api" {
-  type = string
+  type    = string
   default = "sql"
 }
 

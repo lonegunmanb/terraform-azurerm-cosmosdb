@@ -32,7 +32,7 @@ func TestExamples(t *testing.T) {
 			test_helper.RunE2ETest(t, "../../", fmt.Sprintf("examples/%s", d.Name()), terraform.Options{
 				Upgrade:                  true,
 				RetryableTerraformErrors: retryableErrors,
-				//Parallelism: 1,
+				// Parallelism: 1,
 			}, func(t *testing.T, output test_helper.TerraformOutput) {
 				cosmosdbAccountId := output["cosmosdb_account_id"]
 				assert.Regexp(t, "/subscriptions/.+/resourceGroups/.+/providers/Microsoft.DocumentDB/databaseAccounts/.+", cosmosdbAccountId)

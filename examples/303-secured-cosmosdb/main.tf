@@ -161,7 +161,7 @@ module "azure_cosmos_db" {
   key_vault_rg_name              = azurerm_resource_group.this.name
   key_vault_key_name             = azurerm_key_vault_key.this.name
   enable_systemassigned_identity = true
-  private_endpoint               = {
+  private_endpoint = {
     "pe_endpoint" = {
       dns_zone_group_name             = var.dns_zone_group_name
       dns_zone_rg_name                = azurerm_private_dns_zone.this.resource_group_name
@@ -227,7 +227,7 @@ resource "azurerm_key_vault_access_policy" "cosmosdb_systemassigned_identity" {
 resource "azapi_update_resource" "update_default_identity" {
   type        = "Microsoft.DocumentDB/databaseAccounts@2021-10-15"
   resource_id = module.azure_cosmos_db.cosmosdb_id
-  body        = jsonencode({
+  body = jsonencode({
     properties = {
       defaultIdentity = "SystemAssignedIdentity"
     }
