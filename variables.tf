@@ -30,7 +30,7 @@ variable "analytical_storage" {
     schema_type = string
   })
   description = "Analytical storage enablement."
-  default = {
+  default     = {
     enabled     = false
     schema_type = null
   }
@@ -117,7 +117,11 @@ variable "backup_storage_redundancy" {
 
 variable "geo_locations" {
   description = "List of map of geo locations and other properties to create primary and secodanry databasees."
-  type        = any
+  type        = list(object({
+    geo_location      = string
+    failover_priority = number
+    zone_redundant    = bool
+  }))
   default = [
     {
       geo_location      = "eastus"
@@ -130,7 +134,7 @@ variable "geo_locations" {
 variable "capabilities" {
   type        = map(any)
   description = "Map of non-sql DB API to enable support for API other than SQL"
-  default = {
+  default     = {
     sql       = "SQL"
     table     = "EnableTable"
     gremlin   = "EnableGremlin"

@@ -1,25 +1,10 @@
-# Azure provider version 
-terraform {
-  required_providers {
-    azurerm = {
-      source  = "hashicorp/azurerm"
-      version = ">=3.0"
-    }
-    azapi = {
-      source = "azure/azapi"
-    }
-  }
+resource "random_pet" "pet" {
+  length = 1
 }
 
-provider "azurerm" {
-  features {
-    key_vault {
-      purge_soft_delete_on_destroy = true
-    }
-  }
+locals {
+  resource_group_name = coalesce(var.resource_group_name, "example-cosmosdb-${random_pet.pet.id}")
 }
-
-provider "azapi" {}
 
 # Acessing AzureRM provider configuration
 data "azurerm_client_config" "current" {
@@ -31,7 +16,7 @@ data "azuread_service_principal" "this" {
 
 
 resource "azurerm_resource_group" "this" {
-  name     = var.resource_group_name
+  name     = local.resource_group_name
   location = var.location
 }
 
@@ -48,7 +33,7 @@ resource "azurerm_key_vault" "this" {
 resource "azurerm_key_vault_access_policy" "current_user" {
   key_vault_id = azurerm_key_vault.this.id
   tenant_id    = data.azurerm_client_config.current.tenant_id
-  object_id    = data.azurerm_client_config.current.object_id
+  object_id    = coalesce(var.managed_identity_principal_id, data.azurerm_client_config.current.object_id)
 
   key_permissions = [
     "Backup",
@@ -103,7 +88,7 @@ resource "azurerm_key_vault_key" "this" {
 }
 
 module "azure_cosmos_db" {
-  source                         = "Azure/cosmosdb/azurerm"
+  source                         = "../../"
   resource_group_name            = azurerm_resource_group.this.name
   location                       = azurerm_resource_group.this.location
   cosmos_account_name            = var.cosmos_account_name
