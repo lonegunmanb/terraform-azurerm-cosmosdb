@@ -48,8 +48,8 @@ github.com/Azure/go-autorest/autorest/mocks v0.4.0/go.mod h1:LTp+uSrOhSkaKrUy935
 github.com/Azure/go-autorest/autorest/mocks v0.4.1/go.mod h1:LTp+uSrOhSkaKrUy935gNZuuIPPVsHlr9DSOxSayd+k=
 github.com/Azure/go-autorest/logger v0.2.0/go.mod h1:T9E3cAhj2VqvPOtCYAvby9aBXkZmbF5NWuPV8+WeEW8=
 github.com/Azure/go-autorest/tracing v0.6.0/go.mod h1:+vhtPC754Xsa23ID7GlGsrdKBpUA79WCAKPPZVC2DeU=
-github.com/Azure/terraform-module-test-helper v0.0.24 h1:xfj0co/uTUwr+0BzO9PcBJlwCje5F73t/TaI7WFQR1I=
-github.com/Azure/terraform-module-test-helper v0.0.24/go.mod h1:V8d7YBlDhwhO2gbXkZBXGMs06pXzIp23N/gqZAwK+aw=
+github.com/Azure/terraform-module-test-helper v0.2.0 h1:23UUJ8Z34YxGgXKuhgGOhi41yg2qQj/w7a2tJ62UXao=
+github.com/Azure/terraform-module-test-helper v0.2.0/go.mod h1:V8d7YBlDhwhO2gbXkZBXGMs06pXzIp23N/gqZAwK+aw=
 github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03qcyfWMU=
 github.com/BurntSushi/xgb v0.0.0-20160522181843-27f122750802/go.mod h1:IVnqGOEym/WlBOVXweHU+Q+/VP0lqqI8lqeDx9IjBqo=
 github.com/Masterminds/goutils v1.1.1 h1:5nUrii3FMTL5diU80unEVvNevw1nH4+ZV4DSLVJLSYI=

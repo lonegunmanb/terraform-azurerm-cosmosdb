@@ -22,7 +22,11 @@ func TestExamples(t *testing.T) {
 	if managedIdentityId != "" {
 		_ = os.Setenv("TF_VAR_managed_identity_principal_id", managedIdentityId)
 	}
-	retryableErrors := readRetryableErrors(t)
+	retryCfg, err := os.ReadFile("../retryable_errors.hcl.json")
+	if err != nil {
+		t.Fatalf(err.Error())
+	}
+	retryableErrors := test_helper.ReadRetryableErrors(retryCfg, t)
 
 	for _, d := range directories {
 		if !d.IsDir() {
@@ -32,7 +36,6 @@ func TestExamples(t *testing.T) {
 			test_helper.RunE2ETest(t, "../../", fmt.Sprintf("examples/%s", d.Name()), terraform.Options{
 				Upgrade:                  true,
 				RetryableTerraformErrors: retryableErrors,
-				// Parallelism: 1,
 			}, func(t *testing.T, output test_helper.TerraformOutput) {
 				cosmosdbAccountId := output["cosmosdb_account_id"]
 				assert.Regexp(t, "/subscriptions/.+/resourceGroups/.+/providers/Microsoft.DocumentDB/databaseAccounts/.+", cosmosdbAccountId)
@@ -47,7 +50,6 @@ func readRetryableErrors(t *testing.T) map[string]string {
 	if err != nil {
 		t.Fatalf("cannot find retryable_errors.hcl.json")
 	}
-	fmt.Println("Successfully Opened users.json")
 	// defer the closing of our jsonFile so that we can parse it later on
 	defer func() {
 		_ = jsonFile.Close()

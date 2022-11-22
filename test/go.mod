@@ -3,7 +3,7 @@ module github.com/Azure/terraform-azurerm-cosmosdb
 go 1.19
 
 require (
-	github.com/Azure/terraform-module-test-helper v0.0.24
+	github.com/Azure/terraform-module-test-helper v0.2.0
 	github.com/gruntwork-io/terratest v0.41.0
 	github.com/stretchr/testify v1.8.1
 )
