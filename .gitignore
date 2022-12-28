@@ -39,3 +39,6 @@ terraform.rc
 # Ignore Visual Studio Json files
 .vs
 test/go.sum
+test/vendor
+tfmod-scaffold
+.idea
