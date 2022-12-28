@@ -7,7 +7,7 @@ variable "resource_group_name" {
 variable "location" {
   type        = string
   description = "Azure Region"
-  default = "westeurope"
+  default     = "westeurope"
 }
 
 variable "cosmos_account_name" {

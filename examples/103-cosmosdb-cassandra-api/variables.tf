@@ -7,7 +7,7 @@ variable "resource_group_name" {
 variable "location" {
   type        = string
   description = "Azure Region"
-  default = "westeurope"
+  default     = "westeurope"
 }
 
 variable "cosmos_account_name" {
@@ -64,52 +64,52 @@ variable "cassandra_tables" {
   }))
   default = {
     one = {
-      keyspace_name        = "keyspaceautoscale"
-      table_name           = "table1"
-      default_ttl_seconds  = "86400"
+      keyspace_name          = "keyspaceautoscale"
+      table_name             = "table1"
+      default_ttl_seconds    = "86400"
       analytical_storage_ttl = null
-      table_throughout     = 400
-      table_max_throughput = null
+      table_throughout       = 400
+      table_max_throughput   = null
       cassandra_schema_settings = {
-        column  = {
+        column = {
           columnone = {
-            column_key_name      = "loadid"
-            column_key_type      = "uuid"
+            column_key_name = "loadid"
+            column_key_type = "uuid"
           },
           columntwo = {
-            column_key_name      = "machine"
-            column_key_type      = "uuid"
+            column_key_name = "machine"
+            column_key_type = "uuid"
           },
           columnthree = {
-            column_key_name      = "mtime"
-            column_key_type      = "int"
+            column_key_name = "mtime"
+            column_key_type = "int"
           }
         }
         partition_key = {
           partition_key_one = {
-            partition_key_name   = "loadid"
+            partition_key_name = "loadid"
           }
         }
         cluster_key = null
       }
     },
     two = {
-      keyspace_name        = "keyspacenoautoscale"
-      table_name           = "table2"
-      default_ttl_seconds  = "86400"
+      keyspace_name          = "keyspacenoautoscale"
+      table_name             = "table2"
+      default_ttl_seconds    = "86400"
       analytical_storage_ttl = null
-      table_throughout     = 400
-      table_max_throughput = null
+      table_throughout       = 400
+      table_max_throughput   = null
       cassandra_schema_settings = {
-        column  = {
+        column = {
           columntwo = {
-            column_key_name      = "loadid"
-            column_key_type      = "uuid"
+            column_key_name = "loadid"
+            column_key_type = "uuid"
           }
         }
         partition_key = {
           partition_key_two = {
-            partition_key_name   = "loadid"
+            partition_key_name = "loadid"
           }
         }
         cluster_key = null

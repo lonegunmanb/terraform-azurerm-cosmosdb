@@ -141,11 +141,11 @@ rule "terraform_deprecated_interpolation" {
 }
 
 rule "terraform_documented_outputs" {
-  enabled = true
+  enabled = false
 }
 
 rule "terraform_documented_variables" {
-  enabled = true
+  enabled = false
 }
 
 rule "terraform_empty_list_equality" {
@@ -165,7 +165,7 @@ rule "terraform_naming_convention" {
 }
 
 rule "terraform_required_providers" {
-  enabled = true
+  enabled = false
 }
 
 rule "terraform_required_version" {
@@ -177,15 +177,15 @@ rule "terraform_standard_module_structure" {
 }
 
 rule "terraform_typed_variables" {
-  enabled = true
+  enabled = false
 }
 
 rule "terraform_unused_declarations" {
-  enabled = true
+  enabled = false
 }
 
 rule "terraform_unused_required_providers" {
-  enabled = true
+  enabled = false
 }
 
 rule "terraform_workspace_remote" {
@@ -193,11 +193,11 @@ rule "terraform_workspace_remote" {
 }
 
 rule "terraform_locals_order" {
-  enabled = true
+  enabled = false
 }
 
 rule "terraform_output_order" {
-  enabled = true
+  enabled = false
 }
 
 rule "terraform_output_separate" {
@@ -205,7 +205,7 @@ rule "terraform_output_separate" {
 }
 
 rule "terraform_variable_order" {
-  enabled = true
+  enabled = false
 }
 
 rule "terraform_variable_separate" {
@@ -213,15 +213,15 @@ rule "terraform_variable_separate" {
 }
 
 rule "terraform_resource_data_arg_layout" {
-  enabled = true
+  enabled = false
 }
 
 rule "azurerm_arg_order" {
-  enabled = true
+  enabled = false
 }
 
 rule "azurerm_resource_tag" {
-  enabled = true
+  enabled = false
 }
 
 rule "terraform_count_index_usage" {
@@ -233,15 +233,15 @@ rule "terraform_heredoc_usage" {
 }
 
 rule "terraform_module_provider_declaration" {
-  enabled = true
+  enabled = false
 }
 
 rule "terraform_required_providers_declaration" {
-  enabled = true
+  enabled = false
 }
 
 rule "terraform_required_version_declaration" {
-  enabled = true
+  enabled = false
 }
 
 rule "terraform_sensitive_variable_no_default" {

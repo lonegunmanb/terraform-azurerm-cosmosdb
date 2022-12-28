@@ -7,7 +7,7 @@ variable "resource_group_name" {
 variable "location" {
   type        = string
   description = "Azure Region"
-  default = "westeurope"
+  default     = "westeurope"
 }
 
 variable "cosmos_account_name" {
@@ -60,10 +60,10 @@ variable "mongo_db_collections" {
       collection_throughout     = 400
       collection_max_throughput = null
       analytical_storage_ttl    = null
-      indexes                   = {
-        indexone                = {
-          mongo_index_keys          = ["_id"]
-          mongo_index_unique        = true
+      indexes = {
+        indexone = {
+          mongo_index_keys   = ["_id"]
+          mongo_index_unique = true
         }
       }
     },
@@ -75,10 +75,10 @@ variable "mongo_db_collections" {
       collection_throughout     = 400
       collection_max_throughput = null
       analytical_storage_ttl    = null
-      indexes                   = {
-        indextwo                = {
-          mongo_index_keys          = ["_id"]
-          mongo_index_unique        = true
+      indexes = {
+        indextwo = {
+          mongo_index_keys   = ["_id"]
+          mongo_index_unique = true
         }
       }
     }

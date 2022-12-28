@@ -137,11 +137,11 @@ rule "terraform_deprecated_index" {
 }
 
 rule "terraform_deprecated_interpolation" {
-  enabled = true
+  enabled = false
 }
 
 rule "terraform_documented_outputs" {
-  enabled = false
+  enabled = true
 }
 
 rule "terraform_documented_variables" {
@@ -149,7 +149,7 @@ rule "terraform_documented_variables" {
 }
 
 rule "terraform_empty_list_equality" {
-  enabled = true
+  enabled = false
 }
 
 rule "terraform_module_pinned_source" {
@@ -165,7 +165,7 @@ rule "terraform_naming_convention" {
 }
 
 rule "terraform_required_providers" {
-  enabled = true
+  enabled = false
 }
 
 rule "terraform_required_version" {
@@ -173,19 +173,19 @@ rule "terraform_required_version" {
 }
 
 rule "terraform_standard_module_structure" {
-  enabled = true
-}
-
-rule "terraform_typed_variables" {
   enabled = false
 }
 
-rule "terraform_unused_declarations" {
+rule "terraform_typed_variables" {
   enabled = true
 }
 
+rule "terraform_unused_declarations" {
+  enabled = false
+}
+
 rule "terraform_unused_required_providers" {
-  enabled = true
+  enabled = false
 }
 
 rule "terraform_workspace_remote" {
@@ -193,11 +193,11 @@ rule "terraform_workspace_remote" {
 }
 
 rule "terraform_locals_order" {
-  enabled = true
+  enabled = false
 }
 
 rule "terraform_output_order" {
-  enabled = true
+  enabled = false
 }
 
 rule "terraform_output_separate" {
@@ -205,7 +205,7 @@ rule "terraform_output_separate" {
 }
 
 rule "terraform_variable_order" {
-  enabled = true
+  enabled = false
 }
 
 rule "terraform_variable_separate" {
@@ -213,19 +213,19 @@ rule "terraform_variable_separate" {
 }
 
 rule "terraform_resource_data_arg_layout" {
-  enabled = true
-}
-
-rule "azurerm_arg_order" {
-  enabled = true
-}
-
-rule "azurerm_resource_tag" {
   enabled = false
 }
 
-rule "terraform_count_index_usage" {
+rule "azurerm_arg_order" {
+  enabled = false
+}
+
+rule "azurerm_resource_tag" {
   enabled = true
+}
+
+rule "terraform_count_index_usage" {
+  enabled = false
 }
 
 rule "terraform_heredoc_usage" {
@@ -233,11 +233,11 @@ rule "terraform_heredoc_usage" {
 }
 
 rule "terraform_module_provider_declaration" {
-  enabled = false
+  enabled = true
 }
 
 rule "terraform_required_providers_declaration" {
-  enabled = true
+  enabled = false
 }
 
 rule "terraform_required_version_declaration" {

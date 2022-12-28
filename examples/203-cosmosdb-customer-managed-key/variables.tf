@@ -5,9 +5,9 @@ variable "resource_group_name" {
 }
 
 variable "cosmos_enterprise_app_service_principal_object_id" {
-  type    = string
+  type        = string
   description = "Object id for enterprise application named `Azure Cosmos DB`. Leave this variable `null` would query the object via `azuread` provider, which requires corresponding permission."
-  default = null
+  default     = null
 }
 
 variable "location" {
@@ -93,7 +93,7 @@ variable "sql_db_containers" {
         path = string
       }))
     })
-    sql_unique_key             = list(string)
+    sql_unique_key = list(string)
     conflict_resolution_policy = object({
       mode      = string
       path      = string

@@ -32,54 +32,14 @@ func TestUpgrade(t *testing.T) {
 			continue
 		}
 		t.Run(d.Name(), func(t *testing.T) {
+			retryCfg, err := os.ReadFile("../retryable_errors.hcl.json")
+			if err != nil {
+				t.Fatalf(err.Error())
+			}
 			test_helper.ModuleUpgradeTest(t, "Azure", "terraform-azurerm-cosmosdb", fmt.Sprintf("examples/%s", d.Name()), currentRoot, terraform.Options{
-				Upgrade:     true,
-				Parallelism: 1,
+				Upgrade:                  true,
+				RetryableTerraformErrors: test_helper.ReadRetryableErrors(retryCfg, t),
 			}, currentMajorVersion)
 		})
 	}
-}
-
-func TestExampleUpgrade_without_monitor(t *testing.T) {
-	currentRoot, err := test_helper.GetCurrentModuleRootPath()
-	if err != nil {
-		t.FailNow()
-	}
-	currentMajorVersion, err := test_helper.GetCurrentMajorVersionFromEnv()
-	if err != nil {
-		t.FailNow()
-	}
-	var vars map[string]interface{}
-	managedIdentityId := os.Getenv("MSI_ID")
-	if managedIdentityId != "" {
-		vars = map[string]interface{}{
-			"managed_identity_principal_id": managedIdentityId,
-		}
-	}
-	test_helper.ModuleUpgradeTest(t, "Azure", "terraform-azurerm-aks", "examples/without_monitor", currentRoot, terraform.Options{
-		Upgrade: true,
-		Vars:    vars,
-	}, currentMajorVersion)
-}
-
-func TestExampleUpgrade_named_cluster(t *testing.T) {
-	currentRoot, err := test_helper.GetCurrentModuleRootPath()
-	if err != nil {
-		t.FailNow()
-	}
-	currentMajorVersion, err := test_helper.GetCurrentMajorVersionFromEnv()
-	if err != nil {
-		t.FailNow()
-	}
-	var vars map[string]interface{}
-	managedIdentityId := os.Getenv("MSI_ID")
-	if managedIdentityId != "" {
-		vars = map[string]interface{}{
-			"managed_identity_principal_id": managedIdentityId,
-		}
-	}
-	test_helper.ModuleUpgradeTest(t, "Azure", "terraform-azurerm-aks", "examples/named_cluster", currentRoot, terraform.Options{
-		Upgrade: true,
-		Vars:    vars,
-	}, currentMajorVersion)
 }

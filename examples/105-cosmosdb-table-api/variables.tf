@@ -1,21 +1,21 @@
 variable "resource_group_name" {
   type        = string
   description = "Resource Group Name"
-  default = null
+  default     = null
 }
 
 variable "location" {
   type        = string
   description = "Azure Region"
-  default = "eastus"
+  default     = "eastus"
 }
 
 variable "cosmos_account_name" {
-  type = string
+  type    = string
   default = ""
 }
 variable "cosmos_api" {
-  type = string
+  type    = string
   default = "table"
 }
 variable "tables" {
